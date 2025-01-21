@@ -28,11 +28,18 @@ name: Build
 
 on:
   push:
-    branches: [ "main" ]
+    branches:
+      -main
   pull_request:
-    branches: [ "main" ]
+    branches: 
+      -main
+  workflow_dispatch:
+
+permissions:
+  pull-requests: read # allows SonarQube to decorate PRs with analysis results
+  
 jobs:
-  build:
+  Analysis:
     name: Build and analyze
     runs-on: windows-latest
     
