@@ -13,18 +13,10 @@ permissions:
 
 jobs:
   build:
-    name: Build and analyze
     runs-on: self-hosted
-    
     steps:
-      - uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-      - name: Run SonarQube Analysis
-        shell: pwsh
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-          SONAR_HOST_URL: ${{ secrets.SONAR_HOST_URL }}
+      - name: Ejecutar Sonar Scanner
         run: |
-          ./sonar-scanner.bat -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+          .\sonar-scanner.bat -Dsonar.host.url=$SONAR_HOST_URL -Dsonar.login=$SONAR_TOKEN
+        shell: cmd
 
